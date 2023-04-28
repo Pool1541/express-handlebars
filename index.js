@@ -1,7 +1,11 @@
 const express = require("express");
 const hbs = require("hbs");
 const app = express();
-const port = 8000;
+const PORT = process.env.PORT || 3977;
+const bodyParse = require("body-parser");
+
+app.use(bodyParse.urlencoded({ extended: true }));
+app.use(bodyParse.json());
 
 app.use(express.static("public"));
 
@@ -17,42 +21,42 @@ hbs.registerPartials(__dirname + "/views/partials", (error) => {
 // n el método render, el segundo argumento acepta un objeto literal cuyas claves podrán
 // ser llamadas en el archivo home.hbs de la siguiente manera : {{ title }} Para renderizar el valor de la clave title.
 app.get("/", (req, res) => {
-  res.render("home", {
+  res.status(200).render("home", {
     name: "Pool Llerena",
     title: "Curso de nodeJS",
   });
 });
 
 app.get("/promociones", (req, res) => {
-  res.render("promociones", {
+  res.status(200).render("promociones", {
     title: "Handlebars",
   });
 });
 
 app.get("/carta", (req, res) => {
-  res.render("carta", {
+  res.status(200).render("carta", {
     title: "La carta con NodeJS/HandleBars",
   });
 });
 
 app.get("/blog", (req, res) => {
-  res.render("blog", {
+  res.status(200).render("blog", {
     title: "Blog con NodeJS/HandleBars",
   });
 });
 
 app.get("/nosotros", (req, res) => {
-  res.render("nosotros", {
+  res.status(200).render("nosotros", {
     title: "Nosotros con NodeJS/HandleBars",
   });
 });
 
 app.get("/contacto", (req, res) => {
-  res.render("contacto", {
+  res.status(200).render("contacto", {
     title: "Contacto con NodeJS/HandleBars",
   });
 });
 
-app.listen(port, () => {
-  console.log("Servidor en el puerto", port);
+app.listen(PORT, () => {
+  console.log("Servidor en el puerto", PORT);
 });
