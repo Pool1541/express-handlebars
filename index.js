@@ -1,0 +1,58 @@
+const express = require("express");
+const hbs = require("hbs");
+const app = express();
+const port = 8000;
+
+app.use(express.static("public"));
+
+// Handlebars
+app.set("view engine", "hbs");
+// Handlebards Partials
+hbs.registerPartials(__dirname + "/views/partials", (error) => {
+  error && console.log(error);
+});
+
+// Controlador es el callback de la petición get.
+// Podemos enviar argumentos desde el controlador a la vista con un objeto literal
+// n el método render, el segundo argumento acepta un objeto literal cuyas claves podrán
+// ser llamadas en el archivo home.hbs de la siguiente manera : {{ title }} Para renderizar el valor de la clave title.
+app.get("/", (req, res) => {
+  res.render("home", {
+    name: "Pool Llerena",
+    title: "Curso de nodeJS",
+  });
+});
+
+app.get("/promociones", (req, res) => {
+  res.render("promociones", {
+    title: "Handlebars",
+  });
+});
+
+app.get("/carta", (req, res) => {
+  res.render("carta", {
+    title: "La carta con NodeJS/HandleBars",
+  });
+});
+
+app.get("/blog", (req, res) => {
+  res.render("blog", {
+    title: "Blog con NodeJS/HandleBars",
+  });
+});
+
+app.get("/nosotros", (req, res) => {
+  res.render("nosotros", {
+    title: "Nosotros con NodeJS/HandleBars",
+  });
+});
+
+app.get("/contacto", (req, res) => {
+  res.render("contacto", {
+    title: "Contacto con NodeJS/HandleBars",
+  });
+});
+
+app.listen(port, () => {
+  console.log("Servidor en el puerto", port);
+});
