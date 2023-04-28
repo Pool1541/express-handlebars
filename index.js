@@ -2,10 +2,6 @@ const express = require("express");
 const hbs = require("hbs");
 const app = express();
 const PORT = process.env.PORT || 3977;
-const bodyParse = require("body-parser");
-
-app.use(bodyParse.urlencoded({ extended: true }));
-app.use(bodyParse.json());
 
 app.use(express.static("public"));
 
